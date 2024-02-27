@@ -7,17 +7,9 @@ from flask_swagger import swagger
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def registrar_handlers():
-    import propdalpescoleccioncomp.modulos.cliente.aplicacion
-    import propdalpescoleccioncomp.modulos.vuelos.aplicacion
     import propdalpescoleccioncomp.modulos.companias.aplicacion
 
 def importar_modelos_alchemy():
-    import propdalpescoleccioncomp.modulos.cliente.infraestructura.dto
-    import propdalpescoleccioncomp.modulos.hoteles.infraestructura.dto
-    import propdalpescoleccioncomp.modulos.pagos.infraestructura.dto
-    import propdalpescoleccioncomp.modulos.precios_dinamicos.infraestructura.dto
-    import propdalpescoleccioncomp.modulos.vehiculos.infraestructura.dto
-    import propdalpescoleccioncomp.modulos.vuelos.infraestructura.dto
     import propdalpescoleccioncomp.modulos.companias.infraestructura.dto
 
 def comenzar_consumidor():
@@ -28,30 +20,12 @@ def comenzar_consumidor():
     """
 
     import threading
-    import propdalpescoleccioncomp.modulos.cliente.infraestructura.consumidores as cliente
-    import propdalpescoleccioncomp.modulos.hoteles.infraestructura.consumidores as hoteles
-    import propdalpescoleccioncomp.modulos.pagos.infraestructura.consumidores as pagos
-    import propdalpescoleccioncomp.modulos.precios_dinamicos.infraestructura.consumidores as precios_dinamicos
-    import propdalpescoleccioncomp.modulos.vehiculos.infraestructura.consumidores as vehiculos
-    import propdalpescoleccioncomp.modulos.vuelos.infraestructura.consumidores as vuelos
     import propdalpescoleccioncomp.modulos.companias.infraestructura.consumidores as companias
 
     # Suscripción a eventos
-    threading.Thread(target=cliente.suscribirse_a_eventos).start()
-    threading.Thread(target=hoteles.suscribirse_a_eventos).start()
-    threading.Thread(target=pagos.suscribirse_a_eventos).start()
-    threading.Thread(target=precios_dinamicos.suscribirse_a_eventos).start()
-    threading.Thread(target=vehiculos.suscribirse_a_eventos).start()
-    threading.Thread(target=vuelos.suscribirse_a_eventos).start()
     threading.Thread(target=companias.suscribirse_a_eventos).start()
 
     # Suscripción a comandos
-    threading.Thread(target=cliente.suscribirse_a_comandos).start()
-    threading.Thread(target=hoteles.suscribirse_a_comandos).start()
-    threading.Thread(target=pagos.suscribirse_a_comandos).start()
-    threading.Thread(target=precios_dinamicos.suscribirse_a_comandos).start()
-    threading.Thread(target=vehiculos.suscribirse_a_comandos).start()
-    threading.Thread(target=vuelos.suscribirse_a_comandos).start()
     threading.Thread(target=companias.suscribirse_a_comandos).start()
 
 def create_app(configuracion={}):
@@ -81,21 +55,9 @@ def create_app(configuracion={}):
             comenzar_consumidor()
 
      # Importa Blueprints
-    from . import cliente
-    from . import hoteles
-    from . import pagos
-    from . import precios_dinamicos
-    from . import vehiculos
-    from . import vuelos
     from . import companias
 
     # Registro de Blueprints
-    app.register_blueprint(cliente.bp)
-    app.register_blueprint(hoteles.bp)
-    app.register_blueprint(pagos.bp)
-    app.register_blueprint(precios_dinamicos.bp)
-    app.register_blueprint(vehiculos.bp)
-    app.register_blueprint(vuelos.bp)
     app.register_blueprint(companias.bp)
 
     @app.route("/spec")
