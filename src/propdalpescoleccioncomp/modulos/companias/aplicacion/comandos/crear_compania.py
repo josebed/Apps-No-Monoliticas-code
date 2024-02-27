@@ -1,0 +1,47 @@
+from propdalpescoleccioncomp.seedwork.aplicacion.comandos import Comando
+from propdalpescoleccioncomp.modulos.companias.aplicacion.dto import CompaniaDTO
+from .base import CrearCompaniaBaseHandler
+from dataclasses import dataclass, field
+from propdalpescoleccioncomp.seedwork.aplicacion.comandos import ejecutar_commando as comando
+
+from propdalpescoleccioncomp.modulos.companias.dominio.entidades import Compania
+from propdalpescoleccioncomp.seedwork.infraestructura.uow import UnidadTrabajoPuerto
+from propdalpescoleccioncomp.modulos.companias.aplicacion.mapeadores import MapeadorCompania
+from propdalpescoleccioncomp.modulos.companias.infraestructura.repositorios import RepositorioCompanias
+
+@dataclass
+class CrearCompania(Comando):
+    fecha_creacion: str
+    fecha_actualizacion: str
+    id: str
+    nombre: str
+    numero: str
+    tipo: str
+
+
+class CrearCompaniaHandler(CrearCompaniaBaseHandler):
+    
+    def handle(self, comando: CrearCompania):
+        compania_dto = CompaniaDTO(
+                fecha_actualizacion=comando.fecha_actualizacion
+            ,   fecha_creacion=comando.fecha_creacion
+            ,   id=comando.id
+            ,   nombre=comando.nombre
+            ,   numero=comando.numero
+            ,   tipo=comando.tipo)
+
+        compania: Compania = self.fabrica_companias.crear_objeto(compania_dto, MapeadorCompania())
+        compania.crear_compania(compania)
+
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
+
+        UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, compania)
+        UnidadTrabajoPuerto.savepoint()
+        UnidadTrabajoPuerto.commit()
+
+
+@comando.register(CrearCompania)
+def ejecutar_comando_crear_compania(comando: CrearCompania):
+    handler = CrearCompaniaHandler()
+    handler.handle(comando)
+    

@@ -9,6 +9,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 def registrar_handlers():
     import propdalpescoleccioncomp.modulos.cliente.aplicacion
     import propdalpescoleccioncomp.modulos.vuelos.aplicacion
+    import propdalpescoleccioncomp.modulos.companias.aplicacion
 
 def importar_modelos_alchemy():
     import propdalpescoleccioncomp.modulos.cliente.infraestructura.dto
@@ -33,6 +34,7 @@ def comenzar_consumidor():
     import propdalpescoleccioncomp.modulos.precios_dinamicos.infraestructura.consumidores as precios_dinamicos
     import propdalpescoleccioncomp.modulos.vehiculos.infraestructura.consumidores as vehiculos
     import propdalpescoleccioncomp.modulos.vuelos.infraestructura.consumidores as vuelos
+    import propdalpescoleccioncomp.modulos.companias.infraestructura.consumidores as companias
 
     # Suscripción a eventos
     threading.Thread(target=cliente.suscribirse_a_eventos).start()
@@ -41,6 +43,7 @@ def comenzar_consumidor():
     threading.Thread(target=precios_dinamicos.suscribirse_a_eventos).start()
     threading.Thread(target=vehiculos.suscribirse_a_eventos).start()
     threading.Thread(target=vuelos.suscribirse_a_eventos).start()
+    threading.Thread(target=companias.suscribirse_a_eventos).start()
 
     # Suscripción a comandos
     threading.Thread(target=cliente.suscribirse_a_comandos).start()
@@ -49,6 +52,7 @@ def comenzar_consumidor():
     threading.Thread(target=precios_dinamicos.suscribirse_a_comandos).start()
     threading.Thread(target=vehiculos.suscribirse_a_comandos).start()
     threading.Thread(target=vuelos.suscribirse_a_comandos).start()
+    threading.Thread(target=companias.suscribirse_a_comandos).start()
 
 def create_app(configuracion={}):
     # Init la aplicacion de Flask

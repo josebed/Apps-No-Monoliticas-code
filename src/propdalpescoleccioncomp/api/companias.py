@@ -7,6 +7,8 @@ from flask import Response
 
 from propdalpescoleccioncomp.modulos.companias.aplicacion.servicios import ServicioCompania
 from propdalpescoleccioncomp.modulos.companias.aplicacion.mapeadores import MapeadorCompaniaDTOJson
+from propdalpescoleccioncomp.modulos.companias.aplicacion.comandos.crear_compania import CrearCompania
+from propdalpescoleccioncomp.modulos.companias.aplicacion.queries.obtener_compania import ObtenerCompania
 
 from propdalpescoleccioncomp.seedwork.aplicacion.comandos import ejecutar_commando
 from propdalpescoleccioncomp.seedwork.aplicacion.queries import ejecutar_query
@@ -33,6 +35,17 @@ def crear_asincrona():
     try:
         crear_dict = request.json
 
+        map_compania = MapeadorCompaniaDTOJson()
+        compania_dto = map_compania.externo_a_dto(crear_dict)
+
+        comando = CrearCompania(compania_dto.fecha_creacion, compania_dto.fecha_actualizacion, compania_dto.id, 
+                                compania_dto.nombre, compania_dto.numero, compania_dto.tipo)
+        
+        # TODO Reemplaze es todo código sincrono y use el broker de eventos para propagar este comando de forma asíncrona
+        # Revise la clase Despachador de la capa de infraestructura
+        ejecutar_commando(comando)
+        
+        return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
     
@@ -41,9 +54,9 @@ def crear_asincrona():
 def dar_compania(id=None):
     if id:
         sr = ServicioCompania()
-        map_reserva = MapeadorCompaniaDTOJson()
+        map_compania = MapeadorCompaniaDTOJson()
         
-        return map_reserva.dto_a_externo(sr.obtener_compania_por_id(id))
+        return map_compania.dto_a_externo(sr.obtener_compania_por_id(id))
     else:
         return [{'message': 'GET!'}]
     
@@ -51,6 +64,9 @@ def dar_compania(id=None):
 @bp.route('/compania-query/<id>', methods=('GET',))
 def dar_compania_usando_query(id=None):
     if id:
-        crear_dict = ""
+        query_resultado = ejecutar_query(ObtenerCompania(id))
+        map_compania = MapeadorCompaniaDTOJson()
+        
+        return map_compania.dto_a_externo(query_resultado.resultado)
     else:
         return [{'message': 'GET!'}]
