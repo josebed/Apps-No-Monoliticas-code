@@ -12,3 +12,7 @@ class ComandoHandler(ABC):
 @singledispatch
 def ejecutar_commando(comando):
     raise NotImplementedError(f'No existe implementación para el comando de tipo {type(comando).__name__}')
+
+@singledispatch
+def despachar_commando(comando):
+    raise NotImplementedError(f'No existe implementación para el comando de tipo {type(comando).__name__}')

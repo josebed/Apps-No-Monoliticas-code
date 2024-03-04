@@ -1,5 +1,6 @@
 import propdalpescoleccioncomp.seedwork.presentacion.api as api
-import json
+import json, time
+import asyncio
 
 from propdalpescoleccioncomp.seedwork.dominio.excepciones import ExcepcionDominio
 from flask import redirect, render_template, request, session, url_for
@@ -11,6 +12,7 @@ from propdalpescoleccioncomp.modulos.companias.aplicacion.comandos.crear_compani
 from propdalpescoleccioncomp.modulos.companias.aplicacion.queries.obtener_compania import ObtenerCompania
 
 from propdalpescoleccioncomp.seedwork.aplicacion.comandos import ejecutar_commando
+from propdalpescoleccioncomp.seedwork.aplicacion.comandos import despachar_commando
 from propdalpescoleccioncomp.seedwork.aplicacion.queries import ejecutar_query
 
 bp = api.crear_blueprint('companias', '/companias')
@@ -31,8 +33,10 @@ def crear():
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
     
 @bp.route('/compania-comando', methods=('POST',))
-def crear_asincrona():
+async def crear_asincrona():
     try:
+        session.clear()
+
         crear_dict = request.json
 
         map_compania = MapeadorCompaniaDTOJson()
@@ -40,11 +44,11 @@ def crear_asincrona():
 
         comando = CrearCompania(compania_dto.fecha_creacion, compania_dto.fecha_actualizacion, compania_dto.id, 
                                 compania_dto.nombre, compania_dto.numero, compania_dto.tipo)
-        
-        # TODO Reemplaze es todo código sincrono y use el broker de eventos para propagar este comando de forma asíncrona
-        # Revise la clase Despachador de la capa de infraestructura
-        ejecutar_commando(comando)
-        
+
+        task = asyncio.create_task(ejecutar_comando_async(comando))
+        despachar_commando(comando)
+        await task
+ 
         return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
@@ -70,3 +74,7 @@ def dar_compania_usando_query(id=None):
         return map_compania.dto_a_externo(query_resultado.resultado)
     else:
         return [{'message': 'GET!'}]
+    
+async def ejecutar_comando_async(comando):
+    ejecutar_commando(comando)
+            
