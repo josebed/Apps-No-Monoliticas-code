@@ -21,3 +21,4 @@ PyYAML==6.0
 SQLAlchemy==1.4.44
 tomli==2.0.1
 Werkzeug==2.2.2
+requests==2.31.0
