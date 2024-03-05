@@ -33,10 +33,8 @@ def crear():
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
     
 @bp.route('/compania-comando', methods=('POST',))
-async def crear_asincrona():
+def crear_asincrona():
     try:
-        session.clear()
-
         crear_dict = request.json
 
         map_compania = MapeadorCompaniaDTOJson()
@@ -45,9 +43,7 @@ async def crear_asincrona():
         comando = CrearCompania(compania_dto.fecha_creacion, compania_dto.fecha_actualizacion, compania_dto.id, 
                                 compania_dto.nombre, compania_dto.numero, compania_dto.tipo)
 
-        task = asyncio.create_task(ejecutar_comando_async(comando))
         despachar_commando(comando)
-        await task
  
         return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:
@@ -74,7 +70,20 @@ def dar_compania_usando_query(id=None):
         return map_compania.dto_a_externo(query_resultado.resultado)
     else:
         return [{'message': 'GET!'}]
-    
-async def ejecutar_comando_async(comando):
-    ejecutar_commando(comando)
-            
+
+@bp.route('/compania-comando2', methods=('POST',))
+def ejecutar_comando_async():
+    try:
+        crear_dict = request.json
+
+        map_compania = MapeadorCompaniaDTOJson()
+        compania_dto = map_compania.externo_a_dto(crear_dict)
+
+        comando = CrearCompania(compania_dto.fecha_creacion, compania_dto.fecha_actualizacion, compania_dto.id, 
+                                compania_dto.nombre, compania_dto.numero, compania_dto.tipo)
+
+        ejecutar_commando(comando)
+
+        return Response('{}', status=200, mimetype='application/json')
+    except ExcepcionDominio as e:
+        return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json') 

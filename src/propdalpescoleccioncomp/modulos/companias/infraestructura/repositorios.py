@@ -25,9 +25,8 @@ class RepositorioCompaniasSQLite(RepositorioCompanias):
 
     def agregar(self, compania: Compania):
         compania_dto = self.fabrica_companias.crear_objeto(compania, MapeadorCompania())
-        print(compania_dto.nombre)
+        print(compania_dto.id)
         db.session.add(compania_dto)
-        db.session.commit() # quitar al pasar a eventos
 
     def actualizar(self, compania: Compania):
         # TODO
