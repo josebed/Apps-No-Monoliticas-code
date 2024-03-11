@@ -1,6 +1,6 @@
-from propdalpescoleccioncomp.seedwork.aplicacion.comandos import ComandoHandler
-from propdalpescoleccioncomp.modulos.companias.infraestructura.fabricas import FabricaRepositorio
-from propdalpescoleccioncomp.modulos.companias.dominio.fabricas import FabricaCompanias
+from compania.seedwork.aplicacion.comandos import ComandoHandler
+from compania.modulos.companias.infraestructura.fabricas import FabricaRepositorio
+from compania.modulos.companias.dominio.fabricas import FabricaCompanias
 
 class CrearCompaniaBaseHandler(ComandoHandler):
     def __init__(self):

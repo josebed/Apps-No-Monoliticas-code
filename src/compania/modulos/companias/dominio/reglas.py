@@ -4,15 +4,16 @@ En este archivo usted encontrará reglas de negocio del dominio de cliente
 
 """
 
-from propdalpescoleccioncomp.seedwork.dominio.reglas import ReglaNegocio
+from compania.seedwork.dominio.reglas import ReglaNegocio
 from .entidades import Compania
 from .objetos_valor import NombreComp
+
 
 class NombreCompNoVacio(ReglaNegocio):
 
     nombre: NombreComp
 
-    def __init__(self, nombre, mensaje='El campo nombre no puede estar vacio.'):
+    def __init__(self, nombre, mensaje="El campo nombre no puede estar vacio."):
         super().__init__(mensaje)
         self.nombre = nombre
 

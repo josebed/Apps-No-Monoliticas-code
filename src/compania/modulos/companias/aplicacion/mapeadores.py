@@ -1,6 +1,6 @@
-from propdalpescoleccioncomp.seedwork.aplicacion.dto import Mapeador as AppMap
-from propdalpescoleccioncomp.seedwork.dominio.repositorios import Mapeador as RepMap
-from propdalpescoleccioncomp.modulos.companias.dominio.entidades import Compania
+from compania.seedwork.aplicacion.dto import Mapeador as AppMap
+from compania.seedwork.dominio.repositorios import Mapeador as RepMap
+from compania.modulos.companias.dominio.entidades import Compania
 from .dto import CompaniaDTO
 
 from datetime import datetime

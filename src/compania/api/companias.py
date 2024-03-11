@@ -1,19 +1,19 @@
-import propdalpescoleccioncomp.seedwork.presentacion.api as api
+import compania.seedwork.presentacion.api as api
 import json, time
 import asyncio
 
-from propdalpescoleccioncomp.seedwork.dominio.excepciones import ExcepcionDominio
+from compania.seedwork.dominio.excepciones import ExcepcionDominio
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
 
-from propdalpescoleccioncomp.modulos.companias.aplicacion.servicios import ServicioCompania
-from propdalpescoleccioncomp.modulos.companias.aplicacion.mapeadores import MapeadorCompaniaDTOJson
-from propdalpescoleccioncomp.modulos.companias.aplicacion.comandos.crear_compania import CrearCompania
-from propdalpescoleccioncomp.modulos.companias.aplicacion.queries.obtener_compania import ObtenerCompania
+from compania.modulos.companias.aplicacion.servicios import ServicioCompania
+from compania.modulos.companias.aplicacion.mapeadores import MapeadorCompaniaDTOJson
+from compania.modulos.companias.aplicacion.comandos.crear_compania import CrearCompania
+from compania.modulos.companias.aplicacion.queries.obtener_compania import ObtenerCompania
 
-from propdalpescoleccioncomp.seedwork.aplicacion.comandos import ejecutar_commando
-from propdalpescoleccioncomp.seedwork.aplicacion.comandos import despachar_commando
-from propdalpescoleccioncomp.seedwork.aplicacion.queries import ejecutar_query
+from compania.seedwork.aplicacion.comandos import ejecutar_commando
+from compania.seedwork.aplicacion.comandos import despachar_commando
+from compania.seedwork.aplicacion.queries import ejecutar_query
 
 bp = api.crear_blueprint('companias', '/companias')
 

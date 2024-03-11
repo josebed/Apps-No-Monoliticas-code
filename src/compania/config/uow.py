@@ -1,5 +1,6 @@
-from propdalpescoleccioncomp.config.db import db
-from propdalpescoleccioncomp.seedwork.infraestructura.uow import UnidadTrabajo, Batch
+from compania.config.db import db
+from compania.seedwork.infraestructura.uow import UnidadTrabajo, Batch
+
 
 class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
 
@@ -21,7 +22,7 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
 
     @property
     def batches(self) -> list[Batch]:
-        return self._batches             
+        return self._batches
 
     def commit(self):
         for batch in self.batches:
@@ -37,8 +38,8 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
             savepoint.rollback()
         else:
             db.session.rollback()
-        
+
         super().rollback()
-    
+
     def savepoint(self):
         db.session.begin_nested()

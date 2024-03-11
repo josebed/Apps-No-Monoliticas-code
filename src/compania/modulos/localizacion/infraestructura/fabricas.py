@@ -1,9 +1,12 @@
 from dataclasses import dataclass, field
-from propdalpescoleccioncomp.seedwork.dominio.fabricas import Fabrica
-from propdalpescoleccioncomp.seedwork.dominio.repositorios import Repositorio
-from propdalpescoleccioncomp.modulos.locallizacion.dominio.repositorios import RepositorioLocalizaciones
+from compania.seedwork.dominio.fabricas import Fabrica
+from compania.seedwork.dominio.repositorios import Repositorio
+from compania.modulos.locallizacion.dominio.repositorios import (
+    RepositorioLocalizaciones,
+)
 from .repositorios import RepositorioLocalizacionesSQLite
 from .excepciones import ExcepcionFabrica
+
 
 @dataclass
 class FabricaRepositorio(Fabrica):

@@ -5,18 +5,19 @@ encargados de la transformación entre formatos de dominio y DTOs
 
 """
 
-from propdalpescoleccioncomp.seedwork.dominio.repositorios import Mapeador
-from propdalpescoleccioncomp.modulos.localizacion.dominio.entidades import Localizacion
+from compania.seedwork.dominio.repositorios import Mapeador
+from compania.modulos.localizacion.dominio.entidades import Localizacion
 from .dto import Localizacion as LocalizacionDTO
 
+
 class MapeadorLocalizacion(Mapeador):
-    _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
+    _FORMATO_FECHA = "%Y-%m-%dT%H:%M:%SZ"
 
     def obtener_tipo(self) -> type:
         return Localizacion.__class__
 
     def entidad_a_dto(self, entidad: Localizacion) -> LocalizacionDTO:
-        
+
         localizacion_dto = LocalizacionDTO()
         localizacion_dto.fecha_creacion = entidad.fecha_creacion
         localizacion_dto.fecha_actualizacion = entidad.fecha_actualizacion
@@ -30,7 +31,15 @@ class MapeadorLocalizacion(Mapeador):
         return localizacion_dto
 
     def dto_a_entidad(self, dto: LocalizacionDTO) -> Localizacion:
-        localizacion = Localizacion(dto.id, dto.fecha_creacion, dto.fecha_actualizacion, 
-                                    dto.ubicacion, dto.ciudad, dto.numero, dto.latitud, dto.longitud)
-        
+        localizacion = Localizacion(
+            dto.id,
+            dto.fecha_creacion,
+            dto.fecha_actualizacion,
+            dto.ubicacion,
+            dto.ciudad,
+            dto.numero,
+            dto.latitud,
+            dto.longitud,
+        )
+
         return localizacion

@@ -5,10 +5,15 @@ al dominio de localizaciones
 
 """
 
-from propdalpescoleccioncomp.seedwork.dominio.excepciones import ExcepcionFabrica
+from compania.seedwork.dominio.excepciones import ExcepcionFabrica
+
 
 class TipoObjetoNoExisteEnDominioLocalizacionesExcepcion(ExcepcionFabrica):
-    def __init__(self, mensaje='No existe una fábrica para el tipo solicitado en el módulo de localizaciones'):
+    def __init__(
+        self,
+        mensaje="No existe una fábrica para el tipo solicitado en el módulo de localizaciones",
+    ):
         self.__mensaje = mensaje
+
     def __str__(self):
         return str(self.__mensaje)
