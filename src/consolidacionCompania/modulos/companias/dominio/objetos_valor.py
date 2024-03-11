@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from propdalpesconsolidacioncomp.seedwork.dominio.objetos_valor import (
+from consolidacionCompania.seedwork.dominio.objetos_valor import (
     ObjetoValor,
     Codigo,
     Ruta,

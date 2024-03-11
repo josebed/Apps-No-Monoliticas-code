@@ -1,8 +1,8 @@
-from propdalpesconsolidacioncomp.seedwork.aplicacion.queries import QueryHandler
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.fabricas import (
+from consolidacionCompania.seedwork.aplicacion.queries import QueryHandler
+from consolidacionCompania.modulos.companias.infraestructura.fabricas import (
     FabricaRepositorio,
 )
-from propdalpesconsolidacioncomp.modulos.companias.dominio.fabricas import (
+from consolidacionCompania.modulos.companias.dominio.fabricas import (
     FabricaCompanias,
 )
 

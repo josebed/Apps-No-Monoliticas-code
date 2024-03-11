@@ -8,11 +8,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 def registrar_handlers():
-    import propdalpesconsolidacioncomp.modulos.companias.aplicacion
+    import consolidacionCompania.modulos.companias.aplicacion
 
 
 def importar_modelos_alchemy():
-    import propdalpesconsolidacioncomp.modulos.companias.infraestructura.dto
+    import consolidacionCompania.modulos.companias.infraestructura.dto
 
 
 def comenzar_consumidor():
@@ -23,7 +23,7 @@ def comenzar_consumidor():
     """
 
     import threading
-    import propdalpesconsolidacioncomp.modulos.companias.infraestructura.consumidores as companias
+    import consolidacionCompania.modulos.companias.infraestructura.consumidores as companias
 
     # Suscripción a eventos
     threading.Thread(target=companias.suscribirse_a_eventos).start()
@@ -46,11 +46,11 @@ def create_app(configuracion={}):
     app.config["TESTING"] = configuracion.get("TESTING")
 
     # Inicializa la DB
-    from propdalpesconsolidacioncomp.config.db import init_db
+    from consolidacionCompania.config.db import init_db
 
     init_db(app)
 
-    from propdalpesconsolidacioncomp.config.db import db
+    from consolidacionCompania.config.db import db
 
     importar_modelos_alchemy()
     registrar_handlers()

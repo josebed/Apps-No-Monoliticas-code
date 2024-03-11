@@ -8,12 +8,12 @@ objetos complejos del dominio de companias
 from .entidades import Compania
 from .reglas import NombreCompNoVacio
 from .excepciones import TipoObjetoNoExisteEnDominioCompaniasExcepcion
-from propdalpesconsolidacioncomp.seedwork.dominio.repositorios import (
+from consolidacionCompania.seedwork.dominio.repositorios import (
     Mapeador,
     Repositorio,
 )
-from propdalpesconsolidacioncomp.seedwork.dominio.fabricas import Fabrica
-from propdalpesconsolidacioncomp.seedwork.dominio.entidades import Entidad
+from consolidacionCompania.seedwork.dominio.fabricas import Fabrica
+from consolidacionCompania.seedwork.dominio.entidades import Entidad
 from dataclasses import dataclass
 
 

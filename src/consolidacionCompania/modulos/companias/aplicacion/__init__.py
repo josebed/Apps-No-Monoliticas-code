@@ -2,8 +2,8 @@ from pydispatch import dispatcher
 
 from .handlers import HandlerCompaniaIntegracion
 
-from propdalpesconsolidacioncomp.modulos.companias.dominio.eventos import CompaniaCreada
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.comandos.crear_compania import (
+from consolidacionCompania.modulos.companias.dominio.eventos import CompaniaCreada
+from consolidacionCompania.modulos.companias.aplicacion.comandos.crear_compania import (
     CrearCompania,
 )
 

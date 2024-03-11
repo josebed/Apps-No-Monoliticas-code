@@ -1,8 +1,8 @@
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import ComandoHandler
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.fabricas import (
+from consolidacionCompania.seedwork.aplicacion.comandos import ComandoHandler
+from consolidacionCompania.modulos.companias.infraestructura.fabricas import (
     FabricaRepositorio,
 )
-from propdalpesconsolidacioncomp.modulos.companias.dominio.fabricas import (
+from consolidacionCompania.modulos.companias.dominio.fabricas import (
     FabricaCompanias,
 )
 

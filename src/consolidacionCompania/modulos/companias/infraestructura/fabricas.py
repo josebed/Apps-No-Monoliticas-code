@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
-from propdalpesconsolidacioncomp.seedwork.dominio.fabricas import Fabrica
-from propdalpesconsolidacioncomp.seedwork.dominio.repositorios import Repositorio
-from propdalpesconsolidacioncomp.modulos.companias.dominio.repositorios import (
+from consolidacionCompania.seedwork.dominio.fabricas import Fabrica
+from consolidacionCompania.seedwork.dominio.repositorios import Repositorio
+from consolidacionCompania.modulos.companias.dominio.repositorios import (
     RepositorioCompanias,
 )
 from .repositorios import RepositorioCompaniasSQLite

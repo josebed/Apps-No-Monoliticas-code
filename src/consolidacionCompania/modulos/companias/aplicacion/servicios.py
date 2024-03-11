@@ -1,15 +1,15 @@
-from propdalpesconsolidacioncomp.seedwork.aplicacion.servicios import Servicio
-from propdalpesconsolidacioncomp.modulos.companias.dominio.entidades import Compania
-from propdalpesconsolidacioncomp.modulos.companias.dominio.fabricas import (
+from consolidacionCompania.seedwork.aplicacion.servicios import Servicio
+from consolidacionCompania.modulos.companias.dominio.entidades import Compania
+from consolidacionCompania.modulos.companias.dominio.fabricas import (
     FabricaCompanias,
 )
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.fabricas import (
+from consolidacionCompania.modulos.companias.infraestructura.fabricas import (
     FabricaRepositorio,
 )
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.repositorios import (
+from consolidacionCompania.modulos.companias.infraestructura.repositorios import (
     RepositorioCompanias,
 )
-from propdalpesconsolidacioncomp.seedwork.infraestructura.uow import UnidadTrabajoPuerto
+from consolidacionCompania.seedwork.infraestructura.uow import UnidadTrabajoPuerto
 from .mapeadores import MapeadorCompania
 
 from .dto import CompaniaDTO

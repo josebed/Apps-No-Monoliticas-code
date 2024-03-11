@@ -8,10 +8,11 @@ objetos complejos del dominio de localizaciones
 from .entidades import Localizacion
 from .reglas import UbicacionNoVacio
 from .excepciones import TipoObjetoNoExisteEnDominioLocalizacionesExcepcion
-from propdalpescoleccioncomp.seedwork.dominio.repositorios import Mapeador, Repositorio
-from propdalpescoleccioncomp.seedwork.dominio.fabricas import Fabrica
-from propdalpescoleccioncomp.seedwork.dominio.entidades import Entidad
+from compania.seedwork.dominio.repositorios import Mapeador, Repositorio
+from compania.seedwork.dominio.fabricas import Fabrica
+from compania.seedwork.dominio.entidades import Entidad
 from dataclasses import dataclass
+
 
 @dataclass
 class _FabricaLocalizacion(Fabrica):
@@ -20,11 +21,11 @@ class _FabricaLocalizacion(Fabrica):
             return mapeador.entidad_a_dto(obj)
         else:
             localizacion: Localizacion = mapeador.dto_a_entidad(obj)
-            
 
             self.validar_regla(UbicacionNoVacio(localizacion.ubicacion))
-            
+
             return localizacion
+
 
 @dataclass
 class FabricaLocalizaciones(Fabrica):
@@ -34,4 +35,3 @@ class FabricaLocalizaciones(Fabrica):
             return fabrica_localizacion.crear_objeto(obj, mapeador)
         else:
             raise TipoObjetoNoExisteEnDominioLocalizacionesExcepcion()
-

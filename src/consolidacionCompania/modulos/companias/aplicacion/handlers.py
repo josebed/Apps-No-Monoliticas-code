@@ -1,5 +1,5 @@
-from propdalpesconsolidacioncomp.seedwork.aplicacion.handlers import Handler
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.despachadores import (
+from consolidacionCompania.seedwork.aplicacion.handlers import Handler
+from consolidacionCompania.modulos.companias.infraestructura.despachadores import (
     Despachador,
 )
 

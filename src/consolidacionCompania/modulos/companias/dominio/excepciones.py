@@ -5,7 +5,7 @@ al dominio de companias
 
 """
 
-from propdalpesconsolidacioncomp.seedwork.dominio.excepciones import ExcepcionFabrica
+from consolidacionCompania.seedwork.dominio.excepciones import ExcepcionFabrica
 
 
 class TipoObjetoNoExisteEnDominioCompaniasExcepcion(ExcepcionFabrica):

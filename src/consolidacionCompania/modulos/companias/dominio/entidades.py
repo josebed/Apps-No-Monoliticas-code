@@ -1,9 +1,9 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 
-import propdalpesconsolidacioncomp.modulos.companias.dominio.objetos_valor as ov
-from propdalpesconsolidacioncomp.modulos.companias.dominio.eventos import CompaniaCreada
-from propdalpesconsolidacioncomp.seedwork.dominio.entidades import (
+import consolidacionCompania.modulos.companias.dominio.objetos_valor as ov
+from consolidacionCompania.modulos.companias.dominio.eventos import CompaniaCreada
+from consolidacionCompania.seedwork.dominio.entidades import (
     Locacion,
     AgregacionRaiz,
     Entidad,

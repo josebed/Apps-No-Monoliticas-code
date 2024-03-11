@@ -1,9 +1,9 @@
-from propdalpesconsolidacioncomp.config.db import db
-from propdalpesconsolidacioncomp.modulos.companias.dominio.repositorios import (
+from consolidacionCompania.config.db import db
+from consolidacionCompania.modulos.companias.dominio.repositorios import (
     RepositorioCompanias,
 )
-from propdalpesconsolidacioncomp.modulos.companias.dominio.entidades import Compania
-from propdalpesconsolidacioncomp.modulos.companias.dominio.fabricas import (
+from consolidacionCompania.modulos.companias.dominio.entidades import Compania
+from consolidacionCompania.modulos.companias.dominio.fabricas import (
     FabricaCompanias,
 )
 from .dto import Compania as CompaniaDTO

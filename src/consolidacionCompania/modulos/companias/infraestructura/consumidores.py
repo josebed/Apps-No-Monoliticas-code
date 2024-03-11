@@ -6,19 +6,19 @@ import logging
 import traceback
 from flask import session
 
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.schema.v1.eventos import (
+from consolidacionCompania.modulos.companias.infraestructura.schema.v1.eventos import (
     EventoCompaniaCreada,
 )
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.schema.v1.comandos import (
+from consolidacionCompania.modulos.companias.infraestructura.schema.v1.comandos import (
     ComandoCrearCompania,
 )
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import ejecutar_commando
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.comandos.crear_compania import (
+from consolidacionCompania.seedwork.aplicacion.comandos import ejecutar_commando
+from consolidacionCompania.modulos.companias.aplicacion.comandos.crear_compania import (
     CrearCompania,
     ejecutar_comando_crear_compania,
 )
-from propdalpesconsolidacioncomp.seedwork.infraestructura import utils
-import propdalpesconsolidacioncomp.api.companias as api
+from consolidacionCompania.seedwork.infraestructura import utils
+import consolidacionCompania.api.companias as api
 
 
 def suscribirse_a_eventos():
