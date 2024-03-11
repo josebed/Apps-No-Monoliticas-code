@@ -14,8 +14,6 @@ from .mapeadores import MapeadorCompania
 
 from .dto import CompaniaDTO
 
-import asyncio
-
 
 class ServicioCompania(Servicio):
 
@@ -44,8 +42,6 @@ class ServicioCompania(Servicio):
         UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, compania)
         UnidadTrabajoPuerto.savepoint()
         UnidadTrabajoPuerto.commit()
-
-        # repositorio.agregar(compania) # quitar al pasar a eventos
 
         return self.fabrica_companias.crear_objeto(compania, MapeadorCompania())
 

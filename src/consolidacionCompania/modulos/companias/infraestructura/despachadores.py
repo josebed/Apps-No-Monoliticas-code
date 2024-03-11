@@ -28,7 +28,6 @@ class Despachador:
         cliente.close()
 
     def publicar_evento(self, evento, topico):
-        # TODO Debe existir un forma de crear el Payload en Avro con base al tipo del evento
         payload = CompaniaCreadaPayload(
             id_compania=str(evento.id_compania),
             id_localizacion=str(evento.id_localizacion),
@@ -39,7 +38,6 @@ class Despachador:
         self._publicar_mensaje(evento_integracion, topico, EventoCompaniaCreada)
 
     def publicar_comando(self, comando, topico):
-        # TODO Debe existir un forma de crear el Payload en Avro con base al tipo del comando
         payload = ComandoCrearCompaniaPayload(
             fecha_creacion=str(comando.fecha_creacion),
             fecha_actualizacion=str(comando.fecha_actualizacion),
@@ -47,7 +45,6 @@ class Despachador:
             nombre=str(comando.nombre),
             numero=str(comando.numero),
             tipo=str(comando.tipo),
-            # agregar itinerarios
         )
         comando_integracion = ComandoCrearCompania(data=payload)
         self._publicar_mensaje(comando_integracion, topico, ComandoCrearCompania)

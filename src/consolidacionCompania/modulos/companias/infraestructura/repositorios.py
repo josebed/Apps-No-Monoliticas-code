@@ -32,12 +32,10 @@ class RepositorioCompaniasSQLite(RepositorioCompanias):
         compania_dto = self.fabrica_companias.crear_objeto(compania, MapeadorCompania())
         print(compania_dto.nombre)
         db.session.add(compania_dto)
-        db.session.commit()  # quitar al pasar a eventos
+        db.session.commit()
 
     def actualizar(self, compania: Compania):
-        # TODO
         raise NotImplementedError
 
     def eliminar(self, compania_id: UUID):
-        # TODO
         raise NotImplementedError
