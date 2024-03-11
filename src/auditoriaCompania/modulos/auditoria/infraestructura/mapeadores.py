@@ -5,8 +5,8 @@ encargados de la transformación entre formatos de dominio y DTOs
 
 """
 
-from auditoria.seedwork.dominio.repositorios import Mapeador
-from auditoria.modulos.auditoria.dominio.entidades import Auditoria
+from auditoriaCompania.seedwork.dominio.repositorios import Mapeador
+from auditoriaCompania.modulos.auditoria.dominio.entidades import Auditoria
 from .dto import Auditoria as AuditoriaDTO
 
 

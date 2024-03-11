@@ -4,15 +4,18 @@ En este archivo usted encontrará reglas de negocio del dominio de cliente
 
 """
 
-from auditoria.seedwork.dominio.reglas import ReglaNegocio
+from auditoriaCompania.seedwork.dominio.reglas import ReglaNegocio
 from .entidades import Auditoria
 from .objetos_valor import Descripcion
+
 
 class DescCompNoVacio(ReglaNegocio):
 
     descripcion: Descripcion
 
-    def __init__(self, descripcion, mensaje='El campo descripcion no puede estar vacio.'):
+    def __init__(
+        self, descripcion, mensaje="El campo descripcion no puede estar vacio."
+    ):
         super().__init__(mensaje)
         self.descripcion = descripcion
 

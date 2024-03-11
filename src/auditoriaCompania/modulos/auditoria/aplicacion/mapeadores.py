@@ -1,6 +1,6 @@
-from auditoria.seedwork.aplicacion.dto import Mapeador as AppMap
-from auditoria.seedwork.dominio.repositorios import Mapeador as RepMap
-from auditoria.modulos.auditoria.dominio.entidades import Auditoria
+from auditoriaCompania.seedwork.aplicacion.dto import Mapeador as AppMap
+from auditoriaCompania.seedwork.dominio.repositorios import Mapeador as RepMap
+from auditoriaCompania.modulos.auditoria.dominio.entidades import Auditoria
 from .dto import AuditoriaDTO
 
 from datetime import datetime

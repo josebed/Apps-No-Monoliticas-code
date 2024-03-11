@@ -6,19 +6,19 @@ import logging
 import traceback
 from flask import session
 
-from auditoria.modulos.auditoria.infraestructura.schema.v1.eventos import (
+from auditoriaCompania.modulos.auditoria.infraestructura.schema.v1.eventos import (
     EventoCompaniaAuditada,
 )
-from auditoria.modulos.auditoria.infraestructura.schema.v1.comandos import (
+from auditoriaCompania.modulos.auditoria.infraestructura.schema.v1.comandos import (
     ComandoAuditarCompania,
 )
-from auditoria.seedwork.aplicacion.comandos import ejecutar_commando
-from auditoria.modulos.auditoria.aplicacion.comandos.auditar_compania import (
+from auditoriaCompania.seedwork.aplicacion.comandos import ejecutar_commando
+from auditoriaCompania.modulos.auditoria.aplicacion.comandos.auditar_compania import (
     AuditarCompania,
     ejecutar_comando_auditar_compania,
 )
-from auditoria.seedwork.infraestructura import utils
-import auditoria.api.auditoria as api
+from auditoriaCompania.seedwork.infraestructura import utils
+import auditoriaCompania.api.auditoria as api
 
 
 def suscribirse_a_eventos():

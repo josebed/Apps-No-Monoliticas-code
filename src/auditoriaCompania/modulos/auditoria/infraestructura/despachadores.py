@@ -1,15 +1,15 @@
 import pulsar
 from pulsar.schema import *
 
-from auditoria.modulos.auditoria.infraestructura.schema.v1.eventos import (
+from auditoriaCompania.modulos.auditoria.infraestructura.schema.v1.eventos import (
     EventoCompaniaAuditada,
     CompaniaAuditadaPayload,
 )
-from auditoria.modulos.auditoria.infraestructura.schema.v1.comandos import (
+from auditoriaCompania.modulos.auditoria.infraestructura.schema.v1.comandos import (
     ComandoAuditarCompania,
     ComandoAuditarCompaniaPayload,
 )
-from auditoria.seedwork.infraestructura import utils
+from auditoriaCompania.seedwork.infraestructura import utils
 
 import datetime
 
