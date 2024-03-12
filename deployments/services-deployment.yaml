@@ -1,0 +1,293 @@
+###################################
+# consolidacion
+###################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consolidacion
+  labels:
+    app: consolidacion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consolidacion
+  template:
+    metadata:
+      labels:
+        app: consolidacion
+    spec:
+      containers:
+        - name: consolidacion
+          image: us-central1-docker.pkg.dev/apps-no-monoliticas/pda/consolidacion:2.0
+          env:
+            - name: "APACHE_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets
+                  key: apache_host
+                  
+            - name: "APACHE_CREDENTIALS"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets
+                  key: apache_credentials
+
+            - name: "DB_USER"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_user
+            - name: "DB_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_host
+            - name: "DB_PORT"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_port
+            - name: "DB_NAME"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_name
+            - name: "DB_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_password
+            - name: USERS_PATH
+              value: http://servicio-users
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: consolidacion-config
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    port: 3000
+    type: HTTP
+    requestPath: /score/ping
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: servicio-consolidacion
+  annotations:
+    cloud.google.com/backend-config: '{"default": "consolidacion-config"}'
+spec:
+  type: NodePort
+  selector:
+    app: consolidacion
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 31045
+
+
+---
+
+###################################
+# auditoria
+###################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auditoria
+  labels:
+    app: auditoria
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auditoria
+  template:
+    metadata:
+      labels:
+        app: auditoria
+    spec:
+      containers:
+        - name: auditoria
+          image: us-central1-docker.pkg.dev/apps-no-monoliticas/pda/auditoria:2.0
+          env:
+            - name: "APACHE_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets
+                  key: apache_host
+                  
+            - name: "APACHE_CREDENTIALS"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets
+                  key: apache_credentials
+
+            - name: "DB_USER"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_user
+            - name: "DB_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_host
+            - name: "DB_PORT"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_port
+            - name: "DB_NAME"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_name
+            - name: "DB_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_password
+            - name: USERS_PATH
+              value: http://servicio-users
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: auditoria-config
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    port: 3000
+    type: HTTP
+    requestPath: /score/ping
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: servicio-auditoria
+  annotations:
+    cloud.google.com/backend-config: '{"default": "auditoria-config"}'
+spec:
+  type: NodePort
+  selector:
+    app: auditoria
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 31046
+
+
+---
+
+###################################
+# compania
+###################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auditoria
+  labels:
+    app: auditoria
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auditoria
+  template:
+    metadata:
+      labels:
+        app: auditoria
+    spec:
+      containers:
+        - name: auditoria
+          image: us-central1-docker.pkg.dev/apps-no-monoliticas/pda/auditoria:2.0
+          env:
+            - name: "APACHE_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets
+                  key: apache_host
+                  
+            - name: "APACHE_CREDENTIALS"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets
+                  key: apache_credentials
+
+            - name: "DB_USER"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_user
+            - name: "DB_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_host
+            - name: "DB_PORT"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_port
+            - name: "DB_NAME"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_name
+            - name: "DB_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: db_password
+            - name: USERS_PATH
+              value: http://servicio-users
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: auditoria-config
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    port: 3000
+    type: HTTP
+    requestPath: /score/ping
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: servicio-auditoria
+  annotations:
+    cloud.google.com/backend-config: '{"default": "auditoria-config"}'
+spec:
+  type: NodePort
+  selector:
+    app: auditoria
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 31047
+
+
+---
