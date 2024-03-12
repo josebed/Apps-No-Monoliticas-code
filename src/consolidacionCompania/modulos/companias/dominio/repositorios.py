@@ -6,7 +6,7 @@ del dominio de companias
 """
 
 from abc import ABC
-from propdalpesconsolidacioncomp.seedwork.dominio.repositorios import Repositorio
+from consolidacionCompania.seedwork.dominio.repositorios import Repositorio
 
 
 class RepositorioCompanias(Repositorio, ABC): ...

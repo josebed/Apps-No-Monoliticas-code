@@ -5,12 +5,13 @@ encargados de la transformación entre formatos de dominio y DTOs
 
 """
 
-from propdalpescoleccioncomp.seedwork.dominio.repositorios import Mapeador
-from propdalpescoleccioncomp.modulos.companias.dominio.entidades import Compania
+from compania.seedwork.dominio.repositorios import Mapeador
+from compania.modulos.companias.dominio.entidades import Compania
 from .dto import Compania as CompaniaDTO
 
+
 class MapeadorCompania(Mapeador):
-    _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
+    _FORMATO_FECHA = "%Y-%m-%dT%H:%M:%SZ"
 
     def obtener_tipo(self) -> type:
         return Compania.__class__
@@ -24,11 +25,17 @@ class MapeadorCompania(Mapeador):
         compania_dto.nombre = entidad.nombre
         compania_dto.numero = entidad.numero
         compania_dto.tipo = entidad.tipo
-        
+
         return compania_dto
 
     def dto_a_entidad(self, dto: CompaniaDTO) -> Compania:
-        compania = Compania(id=dto.id, fecha_creacion=dto.fecha_creacion, fecha_actualizacion=dto.fecha_actualizacion, 
-                            nombre=dto.nombre, numero=dto.numero, tipo=dto.tipo)
-        
+        compania = Compania(
+            id=dto.id,
+            fecha_creacion=dto.fecha_creacion,
+            fecha_actualizacion=dto.fecha_actualizacion,
+            nombre=dto.nombre,
+            numero=dto.numero,
+            tipo=dto.tipo,
+        )
+
         return compania

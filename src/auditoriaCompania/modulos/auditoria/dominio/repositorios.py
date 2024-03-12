@@ -6,8 +6,7 @@ del dominio de auditoria
 """
 
 from abc import ABC
-from auditoria.seedwork.dominio.repositorios import Repositorio
+from auditoriaCompania.seedwork.dominio.repositorios import Repositorio
 
-class RepositorioAuditoria(Repositorio, ABC):
-    ...
-    
+
+class RepositorioAuditoria(Repositorio, ABC): ...

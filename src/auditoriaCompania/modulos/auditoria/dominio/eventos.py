@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from auditoria.seedwork.dominio.eventos import EventoDominio
+from auditoriaCompania.seedwork.dominio.eventos import EventoDominio
 from datetime import datetime
 
 

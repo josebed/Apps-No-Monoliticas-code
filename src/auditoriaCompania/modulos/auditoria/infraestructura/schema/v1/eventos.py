@@ -1,5 +1,7 @@
 from pulsar.schema import *
-from auditoria.seedwork.infraestructura.schema.v1.eventos import EventoIntegracion
+from auditoriaCompania.seedwork.infraestructura.schema.v1.eventos import (
+    EventoIntegracion,
+)
 
 
 class CompaniaAuditadaPayload(Record):

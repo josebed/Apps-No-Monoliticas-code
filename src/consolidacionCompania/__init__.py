@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Any
 
+
 class TocinoBase(ABC):
     @abstractmethod
     def satisface(self, obj: Any) -> bool:
@@ -19,6 +20,7 @@ class TocinoBase(ABC):
     def __neg__(self) -> "TocinoBase":
         return Not(self)
 
+
 @dataclass(frozen=True)
 class And(TocinoBase):
     primero: TocinoBase
@@ -27,6 +29,7 @@ class And(TocinoBase):
     def satisface(self, obj: Any) -> bool:
         return self.primero.satisface(obj) and self.segundo.satisface(obj)
 
+
 @dataclass(frozen=True)
 class Or(TocinoBase):
     primero: TocinoBase
@@ -34,6 +37,7 @@ class Or(TocinoBase):
 
     def satisface(self, obj: Any) -> bool:
         return self.primero.satisface(obj) or self.segundo.satisface(obj)
+
 
 @dataclass(frozen=True)
 class Not(TocinoBase):

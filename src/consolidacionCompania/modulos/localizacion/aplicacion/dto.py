@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
-from propdalpescoleccioncomp.seedwork.aplicacion.dto import DTO
+from compania.seedwork.aplicacion.dto import DTO
+
 
 @dataclass(frozen=True)
 class LocalizacionDTO(DTO):

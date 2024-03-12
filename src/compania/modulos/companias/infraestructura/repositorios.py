@@ -1,10 +1,11 @@
-from propdalpescoleccioncomp.config.db import db
-from propdalpescoleccioncomp.modulos.companias.dominio.repositorios import RepositorioCompanias
-from propdalpescoleccioncomp.modulos.companias.dominio.entidades import Compania
-from propdalpescoleccioncomp.modulos.companias.dominio.fabricas import FabricaCompanias
+from compania.config.db import db
+from compania.modulos.companias.dominio.repositorios import RepositorioCompanias
+from compania.modulos.companias.dominio.entidades import Compania
+from compania.modulos.companias.dominio.fabricas import FabricaCompanias
 from .dto import Compania as CompaniaDTO
 from .mapeadores import MapeadorCompania
 from uuid import UUID
+
 
 class RepositorioCompaniasSQLite(RepositorioCompanias):
 

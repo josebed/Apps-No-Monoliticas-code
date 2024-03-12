@@ -4,7 +4,7 @@ En este archivo usted encontrará reglas de negocio del dominio de cliente
 
 """
 
-from propdalpescoleccioncomp.seedwork.dominio.reglas import ReglaNegocio
+from compania.seedwork.dominio.reglas import ReglaNegocio
 from .entidades import Locacion
 from .objetos_valor import InformacionGeoespacial
 

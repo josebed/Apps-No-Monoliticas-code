@@ -1,7 +1,9 @@
-from auditoria.config.db import db
-from auditoria.modulos.auditoria.dominio.repositorios import RepositorioAuditoria
-from auditoria.modulos.auditoria.dominio.entidades import Auditoria
-from auditoria.modulos.auditoria.dominio.fabricas import FabricaAuditoria
+from auditoriaCompania.config.db import db
+from auditoriaCompania.modulos.auditoria.dominio.repositorios import (
+    RepositorioAuditoria,
+)
+from auditoriaCompania.modulos.auditoria.dominio.entidades import Auditoria
+from auditoriaCompania.modulos.auditoria.dominio.fabricas import FabricaAuditoria
 from .dto import Auditoria as AuditoriaDTO
 from .mapeadores import MapeadorAuditoria
 from uuid import UUID

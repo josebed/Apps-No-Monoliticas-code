@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
-from auditoria.seedwork.dominio.entidades import AgregacionRaiz
+from auditoriaCompania.seedwork.dominio.entidades import AgregacionRaiz
 from pydispatch import dispatcher
 
 import pickle
@@ -84,7 +84,7 @@ def is_flask():
 
 
 def registrar_unidad_de_trabajo(serialized_obj):
-    from auditoria.config.uow import UnidadTrabajoSQLAlchemy
+    from auditoriaCompania.config.uow import UnidadTrabajoSQLAlchemy
     from flask import session
 
     session["uow"] = serialized_obj
@@ -92,7 +92,7 @@ def registrar_unidad_de_trabajo(serialized_obj):
 
 def flask_uow():
     from flask import session
-    from auditoria.config.uow import UnidadTrabajoSQLAlchemy
+    from auditoriaCompania.config.uow import UnidadTrabajoSQLAlchemy
 
     if session.get("uow"):
         return session["uow"]

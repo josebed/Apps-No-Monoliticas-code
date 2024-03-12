@@ -1,7 +1,9 @@
 from dataclasses import dataclass, field
-from auditoria.seedwork.dominio.fabricas import Fabrica
-from auditoria.seedwork.dominio.repositorios import Repositorio
-from auditoria.modulos.auditoria.dominio.repositorios import RepositorioAuditoria
+from auditoriaCompania.seedwork.dominio.fabricas import Fabrica
+from auditoriaCompania.seedwork.dominio.repositorios import Repositorio
+from auditoriaCompania.modulos.auditoria.dominio.repositorios import (
+    RepositorioAuditoria,
+)
 from .repositorios import RepositorioAuditoriaSQLite
 from .excepciones import ExcepcionFabrica
 

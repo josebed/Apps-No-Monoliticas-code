@@ -1,7 +1,7 @@
-from propdalpescoleccioncomp.config.db import db
-from propdalpescoleccioncomp.modulos.locallizacion.dominio.repositorios import RepositorioLocalizaciones
-from propdalpescoleccioncomp.modulos.locallizacion.dominio.entidades import Localizacion
-from propdalpescoleccioncomp.modulos.locallizacion.dominio.fabricas import FabricaLocalizaciones
+from compania.config.db import db
+from compania.modulos.locallizacion.dominio.repositorios import RepositorioLocalizaciones
+from compania.modulos.locallizacion.dominio.entidades import Localizacion
+from compania.modulos.locallizacion.dominio.fabricas import FabricaLocalizaciones
 from .dto import Localizacion as LocalizacionDTO
 from .mapeadores import MapeadorLocalizacion
 from uuid import UUID

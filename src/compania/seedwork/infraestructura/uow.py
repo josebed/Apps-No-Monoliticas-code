@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
-from propdalpescoleccioncomp.seedwork.dominio.entidades import AgregacionRaiz
+from compania.seedwork.dominio.entidades import AgregacionRaiz
 from pydispatch import dispatcher
 
 import pickle
@@ -11,12 +11,14 @@ class Lock(Enum):
     OPTIMISTA = 1
     PESIMISTA = 2
 
+
 class Batch:
     def __init__(self, operacion, lock: Lock, *args, **kwargs):
         self.operacion = operacion
         self.args = args
         self.lock = lock
         self.kwargs = kwargs
+
 
 class UnidadTrabajo(ABC):
 
@@ -44,7 +46,7 @@ class UnidadTrabajo(ABC):
 
     @abstractmethod
     def savepoints(self) -> list:
-        raise NotImplementedError                    
+        raise NotImplementedError
 
     def commit(self):
         self._publicar_eventos_post_commit()
@@ -53,7 +55,7 @@ class UnidadTrabajo(ABC):
     @abstractmethod
     def rollback(self, savepoint=None):
         self._limpiar_batches()
-    
+
     @abstractmethod
     def savepoint(self):
         raise NotImplementedError
@@ -65,47 +67,53 @@ class UnidadTrabajo(ABC):
 
     def _publicar_eventos_dominio(self, batch):
         for evento in self._obtener_eventos(batches=[batch]):
-            dispatcher.send(signal=f'{type(evento).__name__}Dominio', evento=evento)
+            dispatcher.send(signal=f"{type(evento).__name__}Dominio", evento=evento)
 
     def _publicar_eventos_post_commit(self):
         for evento in self._obtener_eventos():
-            dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
+            dispatcher.send(signal=f"{type(evento).__name__}Integracion", evento=evento)
+
 
 def is_flask():
     try:
         from flask import session
+
         return True
     except Exception as e:
         return False
 
-def registrar_unidad_de_trabajo(serialized_obj):
-    from propdalpescoleccioncomp.config.uow import UnidadTrabajoSQLAlchemy
-    from flask import session
-    
 
-    session['uow'] = serialized_obj
+def registrar_unidad_de_trabajo(serialized_obj):
+    from compania.config.uow import UnidadTrabajoSQLAlchemy
+    from flask import session
+
+    session["uow"] = serialized_obj
+
 
 def flask_uow():
     from flask import session
-    from propdalpescoleccioncomp.config.uow import UnidadTrabajoSQLAlchemy
-    if session.get('uow'):
-        return session['uow']
+    from compania.config.uow import UnidadTrabajoSQLAlchemy
+
+    if session.get("uow"):
+        return session["uow"]
     else:
         uow_serialized = pickle.dumps(UnidadTrabajoSQLAlchemy())
         registrar_unidad_de_trabajo(uow_serialized)
         return uow_serialized
 
+
 def unidad_de_trabajo() -> UnidadTrabajo:
     if is_flask():
         return pickle.loads(flask_uow())
     else:
-        raise Exception('No hay unidad de trabajo')
+        raise Exception("No hay unidad de trabajo")
+
 
 def guardar_unidad_trabajo(uow: UnidadTrabajo):
     if is_flask():
         registrar_unidad_de_trabajo(pickle.dumps(uow))
     else:
-        raise Exception('No hay unidad de trabajo')
+        raise Exception("No hay unidad de trabajo")
 
 
 class UnidadTrabajoPuerto:

@@ -1,6 +1,9 @@
-from auditoria.seedwork.aplicacion.comandos import ComandoHandler
-from auditoria.modulos.auditoria.infraestructura.fabricas import FabricaRepositorio
-from auditoria.modulos.auditoria.dominio.fabricas import FabricaAuditoria
+from auditoriaCompania.seedwork.aplicacion.comandos import ComandoHandler
+from auditoriaCompania.modulos.auditoria.infraestructura.fabricas import (
+    FabricaRepositorio,
+)
+from auditoriaCompania.modulos.auditoria.dominio.fabricas import FabricaAuditoria
+
 
 class AuditarCompaniaBaseHandler(ComandoHandler):
     def __init__(self):
@@ -10,8 +13,7 @@ class AuditarCompaniaBaseHandler(ComandoHandler):
     @property
     def fabrica_repositorio(self):
         return self._fabrica_repositorio
-    
+
     @property
     def fabrica_auditoria(self):
-        return self._fabrica_auditoria    
-    
+        return self._fabrica_auditoria

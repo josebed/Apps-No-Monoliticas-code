@@ -1,9 +1,9 @@
-from propdalpesconsolidacioncomp.config.db import db
-from propdalpesconsolidacioncomp.modulos.companias.dominio.repositorios import (
+from consolidacionCompania.config.db import db
+from consolidacionCompania.modulos.companias.dominio.repositorios import (
     RepositorioCompanias,
 )
-from propdalpesconsolidacioncomp.modulos.companias.dominio.entidades import Compania
-from propdalpesconsolidacioncomp.modulos.companias.dominio.fabricas import (
+from consolidacionCompania.modulos.companias.dominio.entidades import Compania
+from consolidacionCompania.modulos.companias.dominio.fabricas import (
     FabricaCompanias,
 )
 from .dto import Compania as CompaniaDTO
@@ -32,12 +32,10 @@ class RepositorioCompaniasSQLite(RepositorioCompanias):
         compania_dto = self.fabrica_companias.crear_objeto(compania, MapeadorCompania())
         print(compania_dto.nombre)
         db.session.add(compania_dto)
-        db.session.commit()  # quitar al pasar a eventos
+        db.session.commit()
 
     def actualizar(self, compania: Compania):
-        # TODO
         raise NotImplementedError
 
     def eliminar(self, compania_id: UUID):
-        # TODO
         raise NotImplementedError

@@ -1,9 +1,13 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 
-import auditoria.modulos.auditoria.dominio.objetos_valor as ov
-from auditoria.modulos.auditoria.dominio.eventos import CompaniaAuditada
-from auditoria.seedwork.dominio.entidades import Locacion, AgregacionRaiz, Entidad
+import auditoriaCompania.modulos.auditoria.dominio.objetos_valor as ov
+from auditoriaCompania.modulos.auditoria.dominio.eventos import CompaniaAuditada
+from auditoriaCompania.seedwork.dominio.entidades import (
+    Locacion,
+    AgregacionRaiz,
+    Entidad,
+)
 
 
 @dataclass

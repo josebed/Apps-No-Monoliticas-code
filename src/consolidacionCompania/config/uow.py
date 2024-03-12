@@ -1,5 +1,5 @@
-from propdalpesconsolidacioncomp.config.db import db
-from propdalpesconsolidacioncomp.seedwork.infraestructura.uow import (
+from consolidacionCompania.config.db import db
+from consolidacionCompania.seedwork.infraestructura.uow import (
     UnidadTrabajo,
     Batch,
 )

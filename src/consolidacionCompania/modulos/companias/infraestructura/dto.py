@@ -1,4 +1,4 @@
-from propdalpesconsolidacioncomp.config.db import db
+from consolidacionCompania.config.db import db
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, ForeignKey, Integer, Table
 

@@ -5,7 +5,7 @@ a la capa de infraestructura del dominio de vuelos
 
 """
 
-from propdalpesconsolidacioncomp.seedwork.dominio.excepciones import ExcepcionFabrica
+from consolidacionCompania.seedwork.dominio.excepciones import ExcepcionFabrica
 
 
 class NoExisteImplementacionParaTipoFabricaExcepcion(ExcepcionFabrica):

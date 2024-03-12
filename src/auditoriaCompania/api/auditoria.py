@@ -1,23 +1,25 @@
-import auditoria.seedwork.presentacion.api as api
+import auditoriaCompania.seedwork.presentacion.api as api
 import json, time
 import asyncio
 
-from auditoria.seedwork.dominio.excepciones import ExcepcionDominio
+from auditoriaCompania.seedwork.dominio.excepciones import ExcepcionDominio
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
 
-from auditoria.modulos.auditoria.aplicacion.servicios import ServicioAuditoria
-from auditoria.modulos.auditoria.aplicacion.mapeadores import MapeadorAuditoriaDTOJson
-from auditoria.modulos.auditoria.aplicacion.comandos.auditar_compania import (
+from auditoriaCompania.modulos.auditoria.aplicacion.servicios import ServicioAuditoria
+from auditoriaCompania.modulos.auditoria.aplicacion.mapeadores import (
+    MapeadorAuditoriaDTOJson,
+)
+from auditoriaCompania.modulos.auditoria.aplicacion.comandos.auditar_compania import (
     AuditarCompania,
 )
-from auditoria.modulos.auditoria.aplicacion.queries.obtener_auditoria import (
+from auditoriaCompania.modulos.auditoria.aplicacion.queries.obtener_auditoria import (
     ObtenerAuditoria,
 )
 
-from auditoria.seedwork.aplicacion.comandos import ejecutar_commando
-from auditoria.seedwork.aplicacion.comandos import despachar_commando
-from auditoria.seedwork.aplicacion.queries import ejecutar_query
+from auditoriaCompania.seedwork.aplicacion.comandos import ejecutar_commando
+from auditoriaCompania.seedwork.aplicacion.comandos import despachar_commando
+from auditoriaCompania.seedwork.aplicacion.queries import ejecutar_query
 
 bp = api.crear_blueprint("auditoria", "/auditoria")
 

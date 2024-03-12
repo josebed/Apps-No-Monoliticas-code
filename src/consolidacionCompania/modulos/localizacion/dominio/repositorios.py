@@ -6,8 +6,7 @@ del dominio de localizaciones
 """
 
 from abc import ABC
-from propdalpescoleccioncomp.seedwork.dominio.repositorios import Repositorio
+from compania.seedwork.dominio.repositorios import Repositorio
 
-class RepositorioLocalizaciones(Repositorio, ABC):
-    ...
-    
+
+class RepositorioLocalizaciones(Repositorio, ABC): ...

@@ -4,7 +4,7 @@ En este archivo usted encontrará reglas de negocio del dominio de cliente
 
 """
 
-from propdalpesconsolidacioncomp.seedwork.dominio.reglas import ReglaNegocio
+from consolidacionCompania.seedwork.dominio.reglas import ReglaNegocio
 from .entidades import Compania
 from .objetos_valor import NombreComp
 

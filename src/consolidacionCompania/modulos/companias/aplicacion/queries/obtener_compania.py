@@ -1,17 +1,17 @@
-from propdalpesconsolidacioncomp.seedwork.aplicacion.queries import (
+from consolidacionCompania.seedwork.aplicacion.queries import (
     Query,
     QueryHandler,
     QueryResultado,
 )
-from propdalpesconsolidacioncomp.seedwork.aplicacion.queries import (
+from consolidacionCompania.seedwork.aplicacion.queries import (
     ejecutar_query as query,
 )
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.repositorios import (
+from consolidacionCompania.modulos.companias.infraestructura.repositorios import (
     RepositorioCompanias,
 )
 from dataclasses import dataclass
 from .base import CompaniasQueryBaseHandler
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.mapeadores import (
+from consolidacionCompania.modulos.companias.aplicacion.mapeadores import (
     MapeadorCompania,
 )
 import uuid

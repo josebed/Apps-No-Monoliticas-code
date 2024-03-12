@@ -5,8 +5,8 @@ encargados de la transformación entre formatos de dominio y DTOs
 
 """
 
-from propdalpesconsolidacioncomp.seedwork.dominio.repositorios import Mapeador
-from propdalpesconsolidacioncomp.modulos.companias.dominio.entidades import Compania
+from consolidacionCompania.seedwork.dominio.repositorios import Mapeador
+from consolidacionCompania.modulos.companias.dominio.entidades import Compania
 from .dto import Compania as CompaniaDTO
 
 

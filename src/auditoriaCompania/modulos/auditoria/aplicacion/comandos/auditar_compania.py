@@ -1,14 +1,16 @@
-from auditoria.seedwork.aplicacion.comandos import Comando
-from auditoria.modulos.auditoria.aplicacion.dto import AuditoriaDTO
+from auditoriaCompania.seedwork.aplicacion.comandos import Comando
+from auditoriaCompania.modulos.auditoria.aplicacion.dto import AuditoriaDTO
 from .base import AuditarCompaniaBaseHandler
 from dataclasses import dataclass, field
-from auditoria.seedwork.aplicacion.comandos import ejecutar_commando as comando
-from auditoria.seedwork.aplicacion.comandos import despachar_commando as descomando
+from auditoriaCompania.seedwork.aplicacion.comandos import ejecutar_commando as comando
+from auditoriaCompania.seedwork.aplicacion.comandos import (
+    despachar_commando as descomando,
+)
 
-from auditoria.modulos.auditoria.dominio.entidades import Auditoria
-from auditoria.seedwork.infraestructura.uow import UnidadTrabajoPuerto
-from auditoria.modulos.auditoria.aplicacion.mapeadores import MapeadorAuditoria
-from auditoria.modulos.auditoria.infraestructura.repositorios import (
+from auditoriaCompania.modulos.auditoria.dominio.entidades import Auditoria
+from auditoriaCompania.seedwork.infraestructura.uow import UnidadTrabajoPuerto
+from auditoriaCompania.modulos.auditoria.aplicacion.mapeadores import MapeadorAuditoria
+from auditoriaCompania.modulos.auditoria.infraestructura.repositorios import (
     RepositorioAuditoria,
 )
 from pydispatch import dispatcher

@@ -1,7 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from propdalpescoleccioncomp.seedwork.dominio.eventos import (EventoDominio)
+from compania.seedwork.dominio.eventos import EventoDominio
 from datetime import datetime
+
 
 @dataclass
 class CompaniaCreada(EventoDominio):
@@ -9,4 +10,3 @@ class CompaniaCreada(EventoDominio):
     id_localizacion: uuid.UUID = None
     estado: str = None
     fecha_creacion: datetime = None
-    

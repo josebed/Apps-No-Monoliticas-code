@@ -1,20 +1,20 @@
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import Comando
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.dto import CompaniaDTO
+from consolidacionCompania.seedwork.aplicacion.comandos import Comando
+from consolidacionCompania.modulos.companias.aplicacion.dto import CompaniaDTO
 from .base import CrearCompaniaBaseHandler
 from dataclasses import dataclass, field
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import (
+from consolidacionCompania.seedwork.aplicacion.comandos import (
     ejecutar_commando as comando,
 )
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import (
+from consolidacionCompania.seedwork.aplicacion.comandos import (
     despachar_commando as descomando,
 )
 
-from propdalpesconsolidacioncomp.modulos.companias.dominio.entidades import Compania
-from propdalpesconsolidacioncomp.seedwork.infraestructura.uow import UnidadTrabajoPuerto
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.mapeadores import (
+from consolidacionCompania.modulos.companias.dominio.entidades import Compania
+from consolidacionCompania.seedwork.infraestructura.uow import UnidadTrabajoPuerto
+from consolidacionCompania.modulos.companias.aplicacion.mapeadores import (
     MapeadorCompania,
 )
-from propdalpesconsolidacioncomp.modulos.companias.infraestructura.repositorios import (
+from consolidacionCompania.modulos.companias.infraestructura.repositorios import (
     RepositorioCompanias,
 )
 from pydispatch import dispatcher

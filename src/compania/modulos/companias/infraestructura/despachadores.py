@@ -1,9 +1,9 @@
 import pulsar
 from pulsar.schema import *
 
-from propdalpescoleccioncomp.modulos.companias.infraestructura.schema.v1.eventos import EventoCompaniaCreada, CompaniaCreadaPayload
-from propdalpescoleccioncomp.modulos.companias.infraestructura.schema.v1.comandos import ComandoCrearCompania, ComandoCrearCompaniaPayload
-from propdalpescoleccioncomp.seedwork.infraestructura import utils
+from compania.modulos.companias.infraestructura.schema.v1.eventos import EventoCompaniaCreada, CompaniaCreadaPayload
+from compania.modulos.companias.infraestructura.schema.v1.comandos import ComandoCrearCompania, ComandoCrearCompaniaPayload
+from compania.seedwork.infraestructura import utils
 
 import datetime
 

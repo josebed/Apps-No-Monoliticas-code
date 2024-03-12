@@ -8,10 +8,11 @@ objetos complejos del dominio de auditoria
 from .entidades import Auditoria
 from .reglas import DescCompNoVacio
 from .excepciones import TipoObjetoNoExisteEnDominioAuditoriaExcepcion
-from auditoria.seedwork.dominio.repositorios import Mapeador, Repositorio
-from auditoria.seedwork.dominio.fabricas import Fabrica
-from auditoria.seedwork.dominio.entidades import Entidad
+from auditoriaCompania.seedwork.dominio.repositorios import Mapeador, Repositorio
+from auditoriaCompania.seedwork.dominio.fabricas import Fabrica
+from auditoriaCompania.seedwork.dominio.entidades import Entidad
 from dataclasses import dataclass
+
 
 @dataclass
 class _FabricaAuditoria(Fabrica):
@@ -22,8 +23,9 @@ class _FabricaAuditoria(Fabrica):
             auditoria: Auditoria = mapeador.dto_a_entidad(obj)
 
             self.validar_regla(DescCompNoVacio(auditoria.descripcion))
-            
+
             return auditoria
+
 
 @dataclass
 class FabricaAuditoria(Fabrica):
@@ -33,4 +35,3 @@ class FabricaAuditoria(Fabrica):
             return fabrica_auditoria.crear_objeto(obj, mapeador)
         else:
             raise TipoObjetoNoExisteEnDominioAuditoriaExcepcion()
-

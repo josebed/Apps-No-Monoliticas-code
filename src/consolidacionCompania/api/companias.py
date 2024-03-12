@@ -1,27 +1,27 @@
-import propdalpesconsolidacioncomp.seedwork.presentacion.api as api
+import consolidacionCompania.seedwork.presentacion.api as api
 import json, time
 import asyncio
 
-from propdalpesconsolidacioncomp.seedwork.dominio.excepciones import ExcepcionDominio
+from consolidacionCompania.seedwork.dominio.excepciones import ExcepcionDominio
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
 
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.servicios import (
+from consolidacionCompania.modulos.companias.aplicacion.servicios import (
     ServicioCompania,
 )
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.mapeadores import (
+from consolidacionCompania.modulos.companias.aplicacion.mapeadores import (
     MapeadorCompaniaDTOJson,
 )
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.comandos.crear_compania import (
+from consolidacionCompania.modulos.companias.aplicacion.comandos.crear_compania import (
     CrearCompania,
 )
-from propdalpesconsolidacioncomp.modulos.companias.aplicacion.queries.obtener_compania import (
+from consolidacionCompania.modulos.companias.aplicacion.queries.obtener_compania import (
     ObtenerCompania,
 )
 
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import ejecutar_commando
-from propdalpesconsolidacioncomp.seedwork.aplicacion.comandos import despachar_commando
-from propdalpesconsolidacioncomp.seedwork.aplicacion.queries import ejecutar_query
+from consolidacionCompania.seedwork.aplicacion.comandos import ejecutar_commando
+from consolidacionCompania.seedwork.aplicacion.comandos import despachar_commando
+from consolidacionCompania.seedwork.aplicacion.queries import ejecutar_query
 
 bp = api.crear_blueprint("companias", "/companias")
 
