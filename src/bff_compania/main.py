@@ -22,7 +22,7 @@ class Config(BaseSettings):
     APP_VERSION: str = "1"
 
 settings = Config()
-app_configs: dict[str, Any] = {"title": "BFF-Web AeroAlpes"}
+app_configs: dict[str, Any] = {"title": "BFF-Web Companias"}
 
 app = FastAPI(**app_configs)
 tasks = list()
@@ -32,7 +32,7 @@ eventos = list()
 async def app_startup():
     global tasks
     global eventos
-    task1 = asyncio.ensure_future(suscribirse_a_topico("eventos-reserva", "aeroalpes-bff", "public/default/eventos-reserva", eventos=eventos))
+    task1 = asyncio.ensure_future(suscribirse_a_topico("eventos-compania", "companias-bff", "public/default/eventos-compania", eventos=eventos))
     tasks.append(task1)
 
 @app.on_event("shutdown")
@@ -49,7 +49,6 @@ async def stream_mensajes(request: Request):
     async def leer_eventos():
         global eventos
         while True:
-            # Si el cliente cierra la conexión deja de enviar eventos
             if await request.is_disconnected():
                 break
 

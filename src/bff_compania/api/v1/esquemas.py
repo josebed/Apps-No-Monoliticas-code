@@ -7,39 +7,35 @@ import os
 from datetime import datetime
 
 
-AEROALPES_HOST = os.getenv("AEROALPES_ADDRESS", default="localhost")
-FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
+COMPANIA_HOST = os.getenv("AEROALPES_ADDRESS", default="localhost")
 
-def obtener_reservas(root) -> typing.List["Reserva"]:
-    reservas_json = requests.get(f'http://{AEROALPES_HOST}:5000/vuelos/reserva').json()
-    reservas = []
+def obtener_companias(root) -> typing.List["Compania"]:
+    companias_json = requests.get(f'http://{COMPANIA_HOST}:5000/companias/compania-query').json()
+    companias = []
 
-    for reserva in reservas_json:
-        reservas.append(
-            Reserva(
-                fecha_creacion=datetime.strptime(reserva.get('fecha_creacion'), FORMATO_FECHA), 
-                fecha_actualizacion=datetime.strptime(reserva.get('fecha_actualizacion'), FORMATO_FECHA), 
-                id=reserva.get('id'), 
-                id_usuario=reserva.get('id_usuario', '')
+    for compania in companias_json:
+        companias.append(
+            compania(
+                estado=compania.get('estado'), 
+                nombre=compania.get('nombre'), 
+                numero=compania.get('numero'), 
+                tipo=compania.get('tipo'),
+                id=compania.get('id')
             )
         )
 
-    return reservas
+    return companias
+
 
 @strawberry.type
-class Itinerario:
-    # TODO Completar objeto strawberry para incluir los itinerarios
-    ...
+class Compania:
+    id: uuid.UUID
+    estado: str
+    nombre: str
+    numero: str
+    tipo: str
 
 @strawberry.type
-class Reserva:
-    id: str
-    id_usuario: str
-    fecha_creacion: datetime
-    fecha_actualizacion: datetime
-    #itinerarios: typing.List[Itinerario]
-
-@strawberry.type
-class ReservaRespuesta:
+class CompaniaRespuesta:
     mensaje: str
     codigo: int
