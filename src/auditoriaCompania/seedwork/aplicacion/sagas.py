@@ -19,8 +19,8 @@ class CoordinadorSaga(ABC):
     ) -> Comando: ...
 
     def publicar_comando(self, evento: EventoDominio, tipo_comando: type):
-        comando = construir_comando(evento, tipo_comando)
-        ejecutar_commando(comando)
+        comando = self.construir_comando(evento, tipo_comando)
+        # ejecutar_commando(comando)
 
     @abstractmethod
     def inicializar_pasos(self): ...
@@ -32,7 +32,7 @@ class CoordinadorSaga(ABC):
     def iniciar(): ...
 
     @abstractmethod
-    def terminar(): ...
+    def terminar(self): ...
 
 
 class Paso:
@@ -47,12 +47,13 @@ class Inicio(Paso):
 
 
 @dataclass
-class Fin(Paso): ...
+class Fin(Paso):
+    index: int
 
 
 @dataclass
 class Transaccion(Paso):
-
+    index: int
     comando: Comando
     evento: EventoDominio
     error: EventoDominio
@@ -72,7 +73,7 @@ class CoordinadorOrquestacion(CoordinadorSaga, ABC):
     index: int
 
     def obtener_paso_dado_un_evento(self, evento: EventoDominio):
-        for i, paso in enumerate(pasos):
+        for i, paso in enumerate(self.pasos):
             if not isinstance(paso, Transaccion):
                 continue
 
@@ -81,13 +82,18 @@ class CoordinadorOrquestacion(CoordinadorSaga, ABC):
         raise Exception("Evento no hace parte de la transacción")
 
     def es_ultima_transaccion(self, index):
-        return len(self.pasos) - 1
+        print(index)
+        if (len(self.pasos) - 1) == index+1:
+            return True
+        else:
+            return False
 
     def procesar_evento(self, evento: EventoDominio):
         paso, index = self.obtener_paso_dado_un_evento(evento)
-        if es_ultima_transaccion(index) and not isinstance(evento, paso.error):
+        if self.es_ultima_transaccion(index) and not isinstance(evento, paso.error):
             self.terminar()
         elif isinstance(evento, paso.error):
             self.publicar_comando(evento, self.pasos[index - 1].compensacion)
         elif isinstance(evento, paso.evento):
-            self.publicar_comando(evento, self.pasos[index + 1].compensacion)
+            print("llego a publicar comando")
+            self.publicar_comando(evento, self.pasos[index + 1].comando)
