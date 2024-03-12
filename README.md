@@ -14,7 +14,7 @@ docker-compose --profile pulsar up
 3. Desde el directorio principal ejecute el siguiente comando.
 
 ```bash
-flask --app src/propdalpescoleccioncomp/api run
+flask --app src/compania/api run
 ```
 4. Use el método POST para crear compañías:
 

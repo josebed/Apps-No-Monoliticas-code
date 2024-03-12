@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "0214b91b-3135-4074-8d46-c978f82776a6",
+		"name": "PropiedadesAlpes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30846750"
+	},
+	"item": [
+		{
+			"name": "CrearCompania",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation crecionCompania {\r\n  crearCompania(nombre: \"a\", numero: \"1\", tipo: \"a\") {\r\n    codigo\r\n    mensaje\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8003/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"v1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation crecionCompania {\r\n  crearCompania(nombre: \"a\", numero: \"1\", tipo: \"a\") {\r\n    codigo\r\n    mensaje\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8003/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

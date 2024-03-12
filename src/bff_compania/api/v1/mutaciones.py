@@ -6,6 +6,7 @@ from bff_compania import utils
 from bff_compania.despachadores import Despachador
 
 from .esquemas import *
+from pulsar.schema import *
 
 @strawberry.type
 class Mutation:
@@ -22,6 +23,7 @@ class Mutation:
             numero = numero,
             tipo = tipo
         )
+
         despachador = Despachador()
         info.context["background_tasks"].add_task(despachador.publicar_mensaje, comando, "comandos-compania", "public/default/comandos-compania")
         
