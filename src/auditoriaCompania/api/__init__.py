@@ -15,7 +15,7 @@ def importar_modelos_alchemy():
     import auditoriaCompania.modulos.auditoria.infraestructura.dto
 
 
-def comenzar_consumidor():
+def comenzar_consumidor(app):
     """
     Este es un código de ejemplo. Aunque esto sea funcional puede ser un poco peligroso tener
     threads corriendo por si solos. Mi sugerencia es en estos casos usar un verdadero manejador
@@ -58,7 +58,10 @@ def create_app(configuracion={}):
     with app.app_context():
         db.create_all()
         if not app.config.get("TESTING"):
-            comenzar_consumidor()
+            comenzar_consumidor(app)
+
+        from auditoriaCompania.modulos.sagas.aplicacion.coordinadores.saga_companias import CoordinadorAuditoria
+        CoordinadorAuditoria()
 
     # Importa Blueprints
     from . import auditoria

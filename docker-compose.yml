@@ -103,41 +103,8 @@ services:
       - "8080:8080"
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf
       &&  exec bin/pulsar broker"
-  
-  # Servicios de AeroAlpes
-  aeroalpes:
-    container_name: aeroalpes
-    hostname: aeroalpes
-    image: aeroalpes/flask 
-    profiles: ["aeroalpes", "monolito"]
-    networks:
-      - sidecar
-      - pulsar
-    labels:
-      SidecarDiscover: "false"
-    depends_on:
-      - broker
-    environment:
-      - AEROALPES_ADDRESS=aeroalpes
-      - PULSAR_ADDRESS=broker
-    ports:
-      - "5000:5000"
-  adaptador:
-    image: "aeroalpes/adaptador"
-    profiles: ["aeroalpes", "monolito"]
-    container_name: adaptador
-    hostname: adaptador
-    depends_on:
-      - aeroalpes
-    networks:
-      - sidecar
-    environment:
-      - AEROALPES_ADDRESS=aeroalpes
-      - PULSAR_ADDRESS=broker
-    ports:
-      - "50051:50051"
-  
-  # Servicio BFF
+
+# Servicio BFF
   bff:
     container_name: bff
     hostname: bff
@@ -153,34 +120,3 @@ services:
       - pulsar
     ports:
       - "8003:8003"
-  
-  # Servicios de Notificación
-  notificacion:
-    container_name: notificacion
-    hostname: notificacion
-    image: aeroalpes/notificacion 
-    profiles: ["aeroalpes", "notificacion"]
-    depends_on:
-      - aeroalpes
-      - broker
-    environment:
-      - AEROALPES_ADDRESS=aeroalpes
-      - PULSAR_ADDRESS=broker
-    networks:
-      - pulsar
-  # Servicio UI
-  ui:
-    container_name: ui
-    hostname: ui
-    image: aeroalpes/ui 
-    profiles: ["aeroalpes", "ui"]
-    depends_on:
-      - aeroalpes
-      - broker
-    environment:
-      - AEROALPES_ADDRESS=aeroalpes
-      - PULSAR_ADDRESS=broker
-    networks:
-      - pulsar
-    ports:
-      - "5678:5678"

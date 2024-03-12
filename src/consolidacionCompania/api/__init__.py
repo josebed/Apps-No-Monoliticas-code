@@ -8,11 +8,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 def registrar_handlers():
-    import consolidacionCompania.modulos.companias.aplicacion
+    import consolidacionCompania.modulos.consolidacion.aplicacion
 
 
 def importar_modelos_alchemy():
-    import consolidacionCompania.modulos.companias.infraestructura.dto
+    import consolidacionCompania.modulos.consolidacion.infraestructura.dto
 
 
 def comenzar_consumidor():
@@ -23,7 +23,7 @@ def comenzar_consumidor():
     """
 
     import threading
-    import consolidacionCompania.modulos.companias.infraestructura.consumidores as companias
+    import consolidacionCompania.modulos.consolidacion.infraestructura.consumidores as companias
 
     # Suscripción a eventos
     threading.Thread(target=companias.suscribirse_a_eventos).start()
@@ -61,10 +61,10 @@ def create_app(configuracion={}):
             comenzar_consumidor()
 
     # Importa Blueprints
-    from . import companias
+    from . import consolidacion
 
     # Registro de Blueprints
-    app.register_blueprint(companias.bp)
+    app.register_blueprint(consolidacion.bp)
 
     @app.route("/spec")
     def spec():

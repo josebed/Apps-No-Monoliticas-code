@@ -1,0 +1,12 @@
+""" Interfaces para los repositorios del dominio de companias
+
+En este archivo usted encontrará las diferentes interfaces para repositorios
+del dominio de companias
+
+"""
+
+from abc import ABC
+from consolidacionCompania.seedwork.dominio.repositorios import Repositorio
+
+
+class RepositorioConsolidacion(Repositorio, ABC): ...
