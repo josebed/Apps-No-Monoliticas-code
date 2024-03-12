@@ -6,6 +6,7 @@ from bff_compania import utils
 from bff_compania.despachadores import Despachador
 
 from .esquemas import *
+from pulsar.schema import *
 
 @strawberry.type
 class Mutation:
@@ -14,7 +15,7 @@ class Mutation:
     async def crear_compania(self, nombre: str, numero: str, tipo: str, info: Info) -> CompaniaRespuesta:
         print(f"nombre: {nombre}, numero: {numero}, tipo {tipo}")
 
-        comando = dict(
+        payload = dict(
             fecha_creacion= str(datetime.now()),
             fecha_actualizacion= str(datetime.now()),
             id = str(uuid.uuid4()),
@@ -22,6 +23,18 @@ class Mutation:
             numero = numero,
             tipo = tipo
         )
+
+        comando = dict(
+            id = str(uuid.uuid4()),
+            time=utils.time_millis(),
+            specversion = "v1",
+            type = "ComandoCompania",
+            ingestion=utils.time_millis(),
+            datacontenttype="AVRO",
+            service_name = "BFF Compania",
+            data = payload
+        )
+
         despachador = Despachador()
         info.context["background_tasks"].add_task(despachador.publicar_mensaje, comando, "comandos-compania", "public/default/comandos-compania")
         
