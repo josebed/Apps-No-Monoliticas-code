@@ -9,7 +9,7 @@ class EventoCompania(EventoDominio): ...
 
 
 @dataclass
-class CompaniaAuditada(EventoAuditoria):
+class CompaniaCreada(EventoCompania):
     id_compania: uuid.UUID = None
     id_auditoria: uuid.UUID = None
     estado: str = None
@@ -17,7 +17,15 @@ class CompaniaAuditada(EventoAuditoria):
 
 
 @dataclass
-class AuditoriaRevertida(EventoAuditoria):
+class CompaniaAuditada(EventoCompania):
+    id_compania: uuid.UUID = None
+    id_auditoria: uuid.UUID = None
+    estado: str = None
+    fecha_creacion: datetime = None
+
+
+@dataclass
+class AuditoriaRevertida(EventoCompania):
     id_compania: uuid.UUID = None
     id_correlacion: str = None
     descripcion: str = None
@@ -25,7 +33,7 @@ class AuditoriaRevertida(EventoAuditoria):
 
 
 @dataclass
-class AuditoriaFallida(EventoAuditoria):
+class AuditoriaFallida(EventoCompania):
     id_reid_companiaserva: uuid.UUID = None
     id_correlacion: str = None
     descripcion: str = None
