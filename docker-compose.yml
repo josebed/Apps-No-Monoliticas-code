@@ -137,6 +137,23 @@ services:
     ports:
       - "50051:50051"
   
+  # Servicio BFF
+  bff:
+    container_name: bff
+    hostname: bff
+    image: aeroalpes/bff 
+    profiles: ["aeroalpes", "bff"]
+    depends_on:
+      - aeroalpes
+      - broker
+    environment:
+      - AEROALPES_ADDRESS=aeroalpes
+      - BROKER_HOST=broker
+    networks:
+      - pulsar
+    ports:
+      - "8003:8003"
+  
   # Servicios de Notificación
   notificacion:
     container_name: notificacion
