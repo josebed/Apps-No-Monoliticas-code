@@ -20,8 +20,9 @@ class EventoCompaniaAuditada(EventoIntegracion):
 
 class CompaniaCreadaPayload(Record):
     id_compania = String()
-    id_localizacion = String()
-    estado = String()
+    nombre = String()
+    numero = String()
+    tipo = String()
     fecha_creacion = Long()
 
 

@@ -104,19 +104,19 @@ services:
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf
       &&  exec bin/pulsar broker"
 
-# Servicio BFF
-  bff:
-    container_name: bff
-    hostname: bff
-    image: aeroalpes/bff 
-    profiles: ["aeroalpes", "bff"]
-    depends_on:
-      - aeroalpes
-      - broker
-    environment:
-      - AEROALPES_ADDRESS=aeroalpes
-      - BROKER_HOST=broker
-    networks:
-      - pulsar
-    ports:
-      - "8003:8003"
+# # Servicio BFF
+#   bff:
+#     container_name: bff
+#     hostname: bff
+#     image: aeroalpes/bff 
+#     profiles: ["aeroalpes", "bff"]
+#     depends_on:
+#       - aeroalpes
+#       - broker
+#     environment:
+#       - AEROALPES_ADDRESS=aeroalpes
+#       - BROKER_HOST=broker
+#     networks:
+#       - pulsar
+#     ports:
+#       - "8003:8003"

@@ -20,4 +20,9 @@ class Compania(AgregacionRaiz):
         self.numero = compania.numero
         self.tipo = compania.tipo
 
-        self.agregar_evento(CompaniaCreada(id_compania=self.id, id_localizacion=self.id_localizacion, estado=self.estado.name, fecha_creacion=self.fecha_creacion))
+        self.agregar_evento(CompaniaCreada(
+            id_compania=self.id, 
+            nombre=self.nombre,
+            numero=self.numero,
+            tipo=self.tipo,
+            fecha_creacion=self.fecha_creacion))

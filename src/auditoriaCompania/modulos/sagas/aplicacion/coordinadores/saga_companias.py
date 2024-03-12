@@ -31,16 +31,21 @@ class CoordinadorAuditoria(CoordinadorOrquestacion):
 
     def construir_comando(self, evento: EventoDominio, tipo_comando: type):
         print(tipo_comando.__name__)
-        print(evento)
+        print(evento.nombre)
+
+        if tipo_comando.__name__ == "AuditarCompania":
+            print("auditar compania")
+            auditar_compania = AuditarCompania()
+            auditar_compania.id_compania = evento.id
+            auditar_compania.compania = evento.nombre
+            auditar_compania.numero = evento.numero
+            auditar_compania.tipo = evento.tipo
+
+            return auditar_compania
+        
+        return None
 
 
-        # TODO Transforma un evento en la entrada de un comando
-        # Por ejemplo si el evento que llega es ReservaCreada y el tipo_comando es PagarReserva
-        # Debemos usar los atributos de ReservaCreada para crear el comando PagarReserva
-        ...
-
-
-# TODO Agregue un Listener/Handler para que se puedan redireccionar eventos de dominio
 @oir.register(EventoDominio)
 def oir_mensaje(mensaje):
     if isinstance(mensaje, EventoDominio):

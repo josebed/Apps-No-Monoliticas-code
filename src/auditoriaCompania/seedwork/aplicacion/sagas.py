@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from auditoriaCompania.seedwork.aplicacion.comandos import Comando
 from auditoriaCompania.seedwork.dominio.eventos import EventoDominio
 from dataclasses import dataclass
-from .comandos import ejecutar_commando
+from .comandos import ejecutar_commando, despachar_commando
 import uuid
 import datetime
 
@@ -20,7 +20,7 @@ class CoordinadorSaga(ABC):
 
     def publicar_comando(self, evento: EventoDominio, tipo_comando: type):
         comando = self.construir_comando(evento, tipo_comando)
-        # ejecutar_commando(comando)
+        despachar_commando(comando)
 
     @abstractmethod
     def inicializar_pasos(self): ...

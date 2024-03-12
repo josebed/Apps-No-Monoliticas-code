@@ -11,8 +11,9 @@ class EventoCompania(EventoDominio): ...
 @dataclass
 class CompaniaCreada(EventoCompania):
     id_compania: uuid.UUID = None
-    id_auditoria: uuid.UUID = None
-    estado: str = None
+    nombre: str = None
+    numero: str = None
+    tipo: str = None
     fecha_creacion: datetime = None
 
 

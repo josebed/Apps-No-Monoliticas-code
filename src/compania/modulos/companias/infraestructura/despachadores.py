@@ -23,8 +23,9 @@ class Despachador:
         # TODO Debe existir un forma de crear el Payload en Avro con base al tipo del evento
         payload = CompaniaCreadaPayload(
             id_compania=str(evento.id_compania), 
-            id_localizacion=str(evento.id_localizacion), 
-            estado=str(evento.estado), 
+            nombre=str(evento.nombre),
+            numero=str(evento.numero),
+            tipo=str(evento.tipo), 
             fecha_creacion=int(unix_time_millis(evento.fecha_creacion))
         )
         evento_integracion = EventoCompaniaCreada(data=payload)

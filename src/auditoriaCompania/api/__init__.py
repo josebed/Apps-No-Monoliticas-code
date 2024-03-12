@@ -27,6 +27,7 @@ def comenzar_consumidor(app):
 
     # Suscripción a eventos
     threading.Thread(target=auditoria.suscribirse_a_eventos).start()
+    threading.Thread(target=auditoria.suscribirse_a_eventos_compania).start()
 
     # Suscripción a comandos
     threading.Thread(target=auditoria.suscribirse_a_comandos).start()
