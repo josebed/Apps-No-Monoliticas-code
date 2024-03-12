@@ -15,24 +15,13 @@ class Mutation:
     async def crear_compania(self, nombre: str, numero: str, tipo: str, info: Info) -> CompaniaRespuesta:
         print(f"nombre: {nombre}, numero: {numero}, tipo {tipo}")
 
-        payload = dict(
+        comando = dict(
             fecha_creacion= str(datetime.now()),
             fecha_actualizacion= str(datetime.now()),
             id = str(uuid.uuid4()),
             nombre = nombre,
             numero = numero,
             tipo = tipo
-        )
-
-        comando = dict(
-            id = str(uuid.uuid4()),
-            time=utils.time_millis(),
-            specversion = "v1",
-            type = "ComandoCompania",
-            ingestion=utils.time_millis(),
-            datacontenttype="AVRO",
-            service_name = "BFF Compania",
-            data = payload
         )
 
         despachador = Despachador()
